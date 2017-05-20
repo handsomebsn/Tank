@@ -39,7 +39,7 @@ void MainWindow::keyPressEvent(QKeyEvent *event){
     else if(event->key()==Qt::Key_L&&gamestatus==mapedit)
     {
 
-      gamemap.~GameMap();   gamemap.loadmap("1.dat");update();
+        gamemap.loadmap("1.dat");update();
     }
 
 

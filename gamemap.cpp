@@ -8,7 +8,7 @@ for(int i=0;i<INUM;i++)
 //for(int i=0;i<INUM;i++)
    // for(int j=0;j<JNUM;j++)
        //cells[i][j]=new Mapcell(i,j,0);
-
+loadmap("1.dat");
 }\
 GameMap::~GameMap(){
     for(int i=0;i<INUM;i++)
@@ -63,6 +63,11 @@ ou.close();
 }
 
 void GameMap::loadmap(const char *str){
+    for(int i=0;i<INUM;i++)
+        for(int j=0;j<JNUM;j++)
+            if(cells[i][j])
+           {delete cells[i][j] ;cells[i][j]=NULL;}
+    //
 Mapcell cellst;
 std::ifstream in(str);
 int i=0,j=0;
