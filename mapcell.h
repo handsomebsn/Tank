@@ -14,6 +14,7 @@ public:
         this->m_pos.setX(jIndex*CELLWIDTH+CELLWIDTH/2);
         this->m_pos.setY(iIndex*CELLHEIGHT+CELLHEIGHT/2);
         this->CalculateSphere();
+        this->m_bDisappear=false;
 
     }
     // 绘图
@@ -22,7 +23,7 @@ public:
     // 移动
    void Move();
 private:
-static QImage blockimage;
+//static QImage blockimage;
 void CalculateSphere(){
     this->m_rectSphere.setRect(m_pos.x()-CELLWIDTH/2,m_pos.y()-CELLHEIGHT/2,CELLWIDTH,CELLHEIGHT);
 

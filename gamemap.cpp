@@ -19,7 +19,7 @@ GameMap::~GameMap(){
 
 void GameMap::Display(QPainter &paint){
 
-paint.drawImage(QRect(0,0,WIDTH,HEIGHT),QImage(":/images/images/background.bmp"));
+paint.drawImage(QRect(0,0,WIDTH,HEIGHT),QImage(":/images/background.bmp"));
 for(int i=0;i<INUM;i++)
     for(int j=0;j<JNUM;j++)
     {

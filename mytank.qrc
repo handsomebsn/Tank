@@ -1,17 +1,9 @@
 <RCC>
-    <qresource prefix="/images">
+    <qresource prefix="/">
         <file>images/background.bmp</file>
-        <file>images/bullet.bmp</file>
-        <file>images/fire.bmp</file>
-        <file>images/map_block.bmp</file>
-        <file>images/player_tank.bmp</file>
-    </qresource>
-    <qresource prefix="/sounds">
-        <file>sounds/death.wav</file>
-        <file>sounds/hit.wav</file>
-        <file>sounds/motor.wav</file>
-        <file>sounds/shoot.wav</file>
-        <file>sounds/start.wav</file>
-        <file>sounds/turret.wav</file>
+        <file>images/bullet.png</file>
+        <file>images/fire.png</file>
+        <file>images/map_block.png</file>
+        <file>images/player_tank.png</file>
     </qresource>
 </RCC>
