@@ -19,6 +19,7 @@ setFixedSize(WIDTH,HEIGHT);
 QPainter paint(this);
 paint.begin(this);
 gamemap.Display(paint);
+player.Display(paint);
 paint.end();
 }
 

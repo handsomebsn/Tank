@@ -1,3 +1,4 @@
+//游戏类
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
@@ -7,7 +8,7 @@
 #include<QPainter>
 #include"main.h"
 #include "gamemap.h"
-
+#include"tank.h"
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
@@ -30,8 +31,9 @@ void setgame(Gamestatus status){gamestatus=status;}//设置游戏状态
 Gamestatus gamestatus;
 //
 GameMap gamemap;
+//
 
-
+Tank player;
 };
 
 #endif // MAINWINDOW_H
