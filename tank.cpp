@@ -4,6 +4,7 @@ Tank::Tank()
 {
 m_pos.setX(88);
 m_pos.setY(99);
+style=0;
 m_dir=UP;
 ismove=false;
 CalculateSphere();
@@ -12,6 +13,8 @@ CalculateSphere();
 void Tank::Display(QPainter &paint){
     switch(m_dir){
         case UP:
+           qDebug("up %d %d",m_rectSphere.x(),m_rectSphere.width());
+paint.drawText(33,33,"fssf");
             paint.drawImage(m_rectSphere,tankimage,QRect(2*PICTANKWIDTH,style*2,PICTANKWIDTH,PICTANKHEIGHT));//身体
             paint.drawImage(m_rectSphere,tankimage,QRect(2*PICTANKWIDTH,style*2+1,PICTANKWIDTH,PICTANKHEIGHT));//炮塔
             break;
