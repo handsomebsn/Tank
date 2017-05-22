@@ -6,6 +6,7 @@
 #include<QKeyEvent>
 #include<QMouseEvent>
 #include<QPainter>
+#include<QTimer>
 #include"main.h"
 #include "gamemap.h"
 #include"tank.h"
@@ -20,10 +21,12 @@ public:
 
 private slots:
 void keyPressEvent(QKeyEvent *event);
+void keyReleaseEvent(QKeyEvent *);
 void mouseMoveEvent(QMouseEvent *);
 void mousePressEvent(QMouseEvent *);
 void mouseReleaseEvent(QMouseEvent *event);
 void paintEvent(QPaintEvent *event);
+void timefun();
 private:
 int leftorright;//左右
 int laststyle;//上一次方块样式
@@ -34,6 +37,7 @@ GameMap gamemap;
 //
 
 Tank player;
+QTimer *timer;
 };
 
 #endif // MAINWINDOW_H

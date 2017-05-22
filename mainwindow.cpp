@@ -5,11 +5,16 @@ MainWindow::MainWindow(QWidget *parent)
 {gamestatus=gameing;
     laststyle=0;
     leftorright=1;
+    timer=new QTimer(this);
+    timer->setInterval(25);
+    connect(timer,SIGNAL(timeout()),this,SLOT(timefun()));
+    timer->start();
 }
 
 MainWindow::~MainWindow()
 {
-
+timer->stop();
+delete timer;
 }
 void MainWindow::paintEvent(QPaintEvent *event)
 {
@@ -31,19 +36,52 @@ void MainWindow::keyPressEvent(QKeyEvent *event){
     if(event->key()==Qt::Key_M)
         {
             gamestatus=mapedit;
+        }else if(event->key()==Qt::Key_G){
+            gamestatus=gameing;
         }
-    else if(event->key()==Qt::Key_S&&gamestatus==mapedit)
-      {
 
-        gamemap.savemap("1.dat");
-        }
-    else if(event->key()==Qt::Key_L&&gamestatus==mapedit)
-    {
+    if(gamestatus==mapedit){
+        if(event->key()==Qt::Key_S)
+            {
 
-        gamemap.loadmap("1.dat");update();
-    }
+                 gamemap.savemap("1.dat");
+             }
+        else if(event->key()==Qt::Key_L)
+            {
+
+                gamemap.loadmap("1.dat");
+             }
+
+     }else if(gamestatus==gameing){
+          if(event->key()==Qt::Key_S)
+             {
+
+                 player.setdir(DOWN);player.startmove();
+             }
+          else if(event->key()==Qt::Key_A)
+            {
+
+                 player.setdir(LEFT);player.startmove();
+             }
+          else if(event->key()==Qt::Key_W)
+             {
+               player.setdir(UP);player.startmove();
+             }
+          else if(event->key()==Qt::Key_D)
+          {
+              player.setdir(RIGHT);player.startmove();
+
+          }
 
 
+     }
+update();
+}
+
+
+
+void MainWindow::keyReleaseEvent(QKeyEvent *){
+   player.stopmove();
 }
 
 // 鼠标移动事件       默认情况下，触发事件需要按下鼠标，才能触发。可设置为自动触发:setMouseTracking(true);
@@ -89,6 +127,13 @@ update();
 void MainWindow::mouseReleaseEvent(QMouseEvent *event){
 
 //update();
+
 }
 
+void MainWindow::timefun(){
 
+player.Move();
+
+qDebug("timeout");
+update();
+}

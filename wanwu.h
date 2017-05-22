@@ -34,6 +34,7 @@ class Wanwu
     float fashu;
 
  public:
+
        Wanwu(){};
        // 绘图
        virtual void Display(QPainter &paint) = 0;
