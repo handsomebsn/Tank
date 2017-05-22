@@ -12,9 +12,15 @@
 #define PICTANKHEIGHT 64//坦克图片高度
 #define TANKWIDTH 64//坦克宽度
 #define TANKHEIGHT 64//坦克高度
-#include<QDebug>
-#include<QImage>
-extern QImage blockimage;//sheng ming
-extern QImage tankimage;
+class QImage;
+class GameMap;
+class Tank;
+typedef struct{
+QImage *blockimage;
+QImage *tankimage;
+Tank *player;
+GameMap *gamemap;
+}Glo;//单独实列化Glo类型变量，能实列化出来，所有的指针变量所占空间一样。
+extern Glo glo;//声明变量
 #endif // MAIN
 

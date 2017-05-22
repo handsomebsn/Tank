@@ -2,7 +2,13 @@
 #include"QRect"
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
-{gamestatus=gameing;
+{   //初始发全局结构体
+    glo.blockimage=new QImage(":/images/map_block.png");
+    glo.tankimage=new QImage(":/images/player_tank.png");
+    glo.gamemap=new GameMap();
+    glo.player=new Tank();
+    //
+    gamestatus=gameing;
     laststyle=0;
     leftorright=1;
     timer=new QTimer(this);
@@ -23,8 +29,8 @@ void MainWindow::paintEvent(QPaintEvent *event)
 setFixedSize(WIDTH,HEIGHT);
 QPainter paint(this);
 paint.begin(this);
-gamemap.Display(paint);
-player.Display(paint);
+glo.gamemap->Display(paint);
+glo.player->Display(paint);
 paint.end();
 }
 
@@ -44,32 +50,32 @@ void MainWindow::keyPressEvent(QKeyEvent *event){
         if(event->key()==Qt::Key_S)
             {
 
-                 gamemap.savemap("1.dat");
+                 glo.gamemap->savemap("1.dat");
              }
         else if(event->key()==Qt::Key_L)
             {
 
-                gamemap.loadmap("1.dat");
+                glo.gamemap->loadmap("1.dat");
              }
 
      }else if(gamestatus==gameing){
           if(event->key()==Qt::Key_S)
              {
 
-                 player.setdir(DOWN);player.startmove();
+                 glo.player->setdir(DOWN);glo.player->startmove();
              }
           else if(event->key()==Qt::Key_A)
             {
 
-                 player.setdir(LEFT);player.startmove();
+                 glo.player->setdir(LEFT);glo.player->startmove();
              }
           else if(event->key()==Qt::Key_W)
              {
-               player.setdir(UP);player.startmove();
+               glo.player->setdir(UP);glo.player->startmove();
              }
           else if(event->key()==Qt::Key_D)
           {
-              player.setdir(RIGHT);player.startmove();
+              glo.player->setdir(RIGHT);glo.player->startmove();
 
           }
 
@@ -81,7 +87,7 @@ update();
 
 
 void MainWindow::keyReleaseEvent(QKeyEvent *){
-   player.stopmove();
+   glo.player->stopmove();
 }
 
 // 鼠标移动事件       默认情况下，触发事件需要按下鼠标，才能触发。可设置为自动触发:setMouseTracking(true);
@@ -90,12 +96,12 @@ void MainWindow::mouseMoveEvent(QMouseEvent *event){
 //qDebug("haha");
 if(gamestatus==mapedit){
     int i,j;//地图块的二维编号地址
-gamemap.cal(event->x(),event->y(),i,j);
+glo.gamemap->cal(event->x(),event->y(),i,j);
 if(leftorright==1){//如果移动时候按下左键
-gamemap.setstyle(i,j,laststyle);
+glo.gamemap->setstyle(i,j,laststyle);
 }
 else{
- gamemap.deletecell(i,j);
+ glo.gamemap->deletecell(i,j);
 
 }
 
@@ -107,17 +113,17 @@ update();
 void MainWindow::mousePressEvent(QMouseEvent *event){
 int i,j;//地图块的二维编号地址
 if(gamestatus==mapedit){
-gamemap.cal(event->x(),event->y(),i,j);
+glo.gamemap->cal(event->x(),event->y(),i,j);
 
 if(event->button()==Qt::LeftButton){
 
 //qDebug("i %d",i);
 //qDebug("j %d",j);
     leftorright=1;
-laststyle=gamemap.switchstyle(i,j);
+laststyle=glo.gamemap->switchstyle(i,j);
 }
 else{
-gamemap.deletecell(i,j);
+glo.gamemap->deletecell(i,j);
 leftorright=2;
 }
 }//if(gamestatus==mapedit) end
@@ -132,7 +138,7 @@ void MainWindow::mouseReleaseEvent(QMouseEvent *event){
 
 void MainWindow::timefun(){
 
-player.Move();
+glo.player->Move();
 
 qDebug("timeout");
 update();

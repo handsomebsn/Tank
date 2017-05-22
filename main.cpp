@@ -1,8 +1,7 @@
+#include "main.h"
 #include "mainwindow.h"
 #include <QApplication>
-
-QImage blockimage=QImage(":/images/map_block.png");
-QImage tankimage=QImage(":/images/player_tank.png");
+Glo glo;
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
