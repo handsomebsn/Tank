@@ -48,6 +48,8 @@ class Wanwu
        bool IsBoom(const Wanwu &wanwu)const;
        //
        void SetDisappear(bool tmp){m_bDisappear=tmp;}
+       //
+       QPoint getpos(){return m_pos;}
 };
 
 #endif // WANWU_H

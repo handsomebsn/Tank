@@ -3,6 +3,7 @@
 
 #include"wanwu.h"
 #include"main.h"
+#include<fstream>
 class Mapcell : public Wanwu
 {
 public:
@@ -30,6 +31,7 @@ public:
    int switchstyle(){style++;style=style%28;return style;}
    //设置样式
    void setstyle(int style){this->style=style;}
+
 
 private:
 //static QImage blockimage;

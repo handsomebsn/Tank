@@ -31,6 +31,17 @@ void MainWindow::keyPressEvent(QKeyEvent *event){
         {
             gamestatus=mapedit;
         }
+    else if(event->key()==Qt::Key_S&&gamestatus==mapedit)
+      {
+
+        gamemap.savemap("1.dat");
+        }
+    else if(event->key()==Qt::Key_L&&gamestatus==mapedit)
+    {
+
+      gamemap.~GameMap();   gamemap.loadmap("1.dat");update();
+    }
+
 
 }
 
@@ -38,6 +49,7 @@ void MainWindow::keyPressEvent(QKeyEvent *event){
 void MainWindow::mouseMoveEvent(QMouseEvent *event){
 //qDebug("left or rigth 1 or 2=》 %d",event->button() );
 //qDebug("haha");
+if(gamestatus==mapedit){
     int i,j;//地图块的二维编号地址
 gamemap.cal(event->x(),event->y(),i,j);
 if(leftorright==1){//如果移动时候按下左键
@@ -47,11 +59,15 @@ else{
  gamemap.deletecell(i,j);
 
 }
+
+}//if(gamestatus==mapedit) end
+
 update();
 }
 
 void MainWindow::mousePressEvent(QMouseEvent *event){
 int i,j;//地图块的二维编号地址
+if(gamestatus==mapedit){
 gamemap.cal(event->x(),event->y(),i,j);
 
 if(event->button()==Qt::LeftButton){
@@ -65,6 +81,7 @@ else{
 gamemap.deletecell(i,j);
 leftorright=2;
 }
+}//if(gamestatus==mapedit) end
 update();
 
 }
