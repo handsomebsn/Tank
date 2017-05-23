@@ -10,7 +10,6 @@
 #include"main.h"
 #include "gamemap.h"
 #include"tank.h"
-#include"thread.h"
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
@@ -36,7 +35,7 @@ Gamestatus gamestatus;
 
 QTimer *timer;
 
-Thread *thr;
+
 };
 
 #endif // MAINWINDOW_H

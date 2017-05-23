@@ -19,8 +19,7 @@ SOURCES += main.cpp\
     bullet.cpp \
     boom.cpp \
     mapcell.cpp \
-    gamemap.cpp \
-    thread.cpp
+    gamemap.cpp
 
 HEADERS  += mainwindow.h \
     wanwu.h \
@@ -29,8 +28,7 @@ HEADERS  += mainwindow.h \
     boom.h \
     mapcell.h \
     gamemap.h \
-    main.h \
-    thread.h
+    main.h
 
 RESOURCES += \
     mytank.qrc

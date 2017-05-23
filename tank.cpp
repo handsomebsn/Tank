@@ -31,6 +31,7 @@ Tank::Tank(int iIndex, int jIndex, int style, Dir dir){
     fashu=fashus[style];
     hujia=hujias[style];
     mokang=mokangs[style];
+    m_step=steps[style];
     CalculateSphere();
 }
 

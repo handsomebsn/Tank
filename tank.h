@@ -6,7 +6,7 @@
 class Tank : public Wanwu
 {
 protected:
-   int steps[8]={2,4,8,8,16,16,32,64};
+   int steps[8]={2,4,8,8,16,16,32,32};
    float wulis[8]={20,40,80,160,160,320,320,640};
    float fashus[8]={20,40,80,160,160,320,320,640};
    float hujias[8]={50,70,90,110,130,150,170,190};

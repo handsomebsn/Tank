@@ -7,9 +7,9 @@ MainWindow::MainWindow(QWidget *parent)
     glo.tankimage=new QImage(":/images/player_tank.png");
     glo.gamemap=new GameMap();
     glo.player=new Tank(10,8);
-    Tank *tmp=new Tank(2,3,7,UP);
+    Tank *tmp=new Tank(2,3,7,DOWN);
     glo.badtanks.append(tmp);
-    tmp=new Tank(2,5,6,UP);
+    tmp=new Tank(2,5,6,DOWN);
     glo.badtanks.append(tmp);
     //
     gamestatus=gameing;
@@ -19,8 +19,7 @@ MainWindow::MainWindow(QWidget *parent)
     timer->setInterval(25);
     connect(timer,SIGNAL(timeout()),this,SLOT(timefun()));
     timer->start();
-   thr=new Thread(this);
-   thr->start();
+
 
 }
 
@@ -28,9 +27,7 @@ MainWindow::~MainWindow()
 {
 timer->stop();
 delete timer;
- thr->terminate();
- thr->wait();
- delete thr;
+
 
 }
 void MainWindow::paintEvent(QPaintEvent *event)
@@ -151,10 +148,47 @@ void MainWindow::mouseReleaseEvent(QMouseEvent *event){
 }
 
 void MainWindow::timefun(){
+    Dir tmpdir;int tmp;
+/**敌人坦克控制**/
+    for(int i=0;i<glo.badtanks.count();i++){
+    if(qrand()%5==0)
+    glo.badtanks.at(i)->startmove();
+   if(qrand()%10==0)
+       glo.badtanks.at(i)->stopmove();
+   if(qrand()%10==0){
+       tmp=qrand()%4;
+          switch(tmp){
+          case 0:
+              tmpdir=UP;
+            break;
+          case 1:
+              tmpdir=DOWN;
+            break;
+
+           case 2:
+              tmpdir=LEFT;
+              break;
+
+          case 3:
+              tmpdir=RIGHT;
+              break;
+
+
+
+
+          }
+         glo.badtanks.at(i)->setdir(tmpdir);
+           }
+    }
+ /**end**/
+
+
+
 
 glo.player->Move();
 for(int i=0;i<glo.badtanks.count();i++)
-glo.badtanks.at(i)->Move();
+{glo.badtanks.at(i)->Move();qDebug("%d %d",glo.badtanks.at(i)->m_pos.x(),glo.badtanks.at(i)->m_pos.y());}
+
 qDebug("timeout");
 update();
 }
