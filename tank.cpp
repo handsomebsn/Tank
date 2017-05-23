@@ -19,6 +19,7 @@ Tank::Tank(int iIndex, int jIndex,Dir dir,int style,float wuli,float life){
     this->style=style;
     this->m_dir=m_dir;
     ismove=false;
+    m_dir=dir;
     CalculateSphere();
 }
 
