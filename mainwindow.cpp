@@ -16,7 +16,7 @@ MainWindow::MainWindow(QWidget *parent)
     laststyle=0;
     leftorright=1;
     timer=new QTimer(this);
-    timer->setInterval(20);
+    timer->setInterval(10);
     connect(timer,SIGNAL(timeout()),this,SLOT(timefun()));
     timer->start();
 

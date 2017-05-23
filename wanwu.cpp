@@ -9,3 +9,19 @@ isok=false;
 return isok;
 }
 
+void Wanwu::downlife(float gongji, int astyle){
+float  mianshang=0.00;
+switch(astyle){
+case 0:
+mianshang=hujia/(100+hujia);
+    break;
+case 1:
+mianshang=mokang/(100+mokang);
+    break;
+}
+
+life=life-(1-mianshang)*gongji;
+if(life<0)
+{m_bDisappear=true;life=0;}
+
+}

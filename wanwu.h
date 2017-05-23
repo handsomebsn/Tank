@@ -51,6 +51,8 @@ class Wanwu
        void SetDisappear(bool tmp){m_bDisappear=tmp;}
        //
        QPoint getpos(){return m_pos;}
+       //攻击力,攻击类型astyle
+       void downlife(float gongji,int astyle=0);
 };
 
 #endif // WANWU_H
