@@ -21,9 +21,9 @@ public:
 
 private slots:
 void keyPressEvent(QKeyEvent *event);
-void keyReleaseEvent(QKeyEvent *);
-void mouseMoveEvent(QMouseEvent *);
-void mousePressEvent(QMouseEvent *);
+void keyReleaseEvent(QKeyEvent *event);
+void mouseMoveEvent(QMouseEvent *event);
+void mousePressEvent(QMouseEvent *event);
 void mouseReleaseEvent(QMouseEvent *event);
 void paintEvent(QPaintEvent *event);
 void timefun();
@@ -32,11 +32,7 @@ int leftorright;//左右
 int laststyle;//上一次方块样式
 void setgame(Gamestatus status){gamestatus=status;}//设置游戏状态
 Gamestatus gamestatus;
-//
-GameMap gamemap;
-//
 
-Tank player;
 QTimer *timer;
 };
 

@@ -86,7 +86,7 @@ update();
 
 
 
-void MainWindow::keyReleaseEvent(QKeyEvent *){
+void MainWindow::keyReleaseEvent(QKeyEvent *event){
    glo.player->stopmove();
 }
 
