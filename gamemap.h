@@ -12,6 +12,7 @@ Mapcell *cells[INUM][JNUM];
 public:
     GameMap();
     ~GameMap();
+    Mapcell *getcell(int i,int j)const{return cells[i][j];}
     void Display(QPainter &paint);
 
     int switchstyle(int i,int j){

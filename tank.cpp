@@ -2,9 +2,9 @@
 
 Tank::Tank()
 {
-m_pos.setX(88);
-m_pos.setY(99);
-m_step=5;
+m_pos.setX(32);
+m_pos.setY(32);
+m_step=8;
 style=0;
 m_dir=UP;
 ismove=false;
@@ -35,7 +35,9 @@ void Tank::Display(QPainter &paint){
 
 }
 void Tank::Move()
-{if(ismove==true){
+{
+   if(nextsiboom())return;
+   if(ismove==true){
     switch(m_dir){
         case UP:
             m_pos.setY(m_pos.y()-m_step);
@@ -55,6 +57,32 @@ void Tank::Move()
  }
 qDebug("move off");
 }
+
+void Tank::Move1()
+{
+   if(ismove==true){
+    switch(m_dir){
+        case UP:
+            m_pos.setY(m_pos.y()-m_step);
+            break;
+        case DOWN:
+            m_pos.setY(m_pos.y()+m_step);
+            break;
+        case LEFT:
+            m_pos.setX(m_pos.x()-m_step);
+            break;
+        case RIGHT:
+            m_pos.setX(m_pos.x()+m_step);
+            break;
+      }
+    CalculateSphere();
+    qDebug("yuce ");
+ }
+qDebug("move off");
+}
+
+
+
 void Tank::CalculateSphere(){
 
 this->m_rectSphere.setRect(m_pos.x()-TANKWIDTH/2,m_pos.y()-TANKHEIGHT/2,TANKWIDTH,TANKHEIGHT);
