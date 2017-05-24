@@ -9,7 +9,7 @@ class Mapcell : public Wanwu
 public:
 
     Mapcell();
-    Mapcell(int iIndex,int jIndex,int style=0,float life=200){//护甲魔抗物理攻击魔法攻击攻击速度移动速度暂时用不到
+    Mapcell(int iIndex,int jIndex,int style=0,float life=800){//护甲魔抗物理攻击魔法攻击攻击速度移动速度暂时用不到
 
 
         this->m_pos.setX(jIndex*CELLWIDTH+CELLWIDTH/2);
@@ -18,6 +18,8 @@ public:
         this->m_bDisappear=false;
         this->life=life;
         this->style=style%28;//map_block.png总共有28小块
+        this->hujia=300;
+        this->mokang=300;
 
     }
     // 绘图

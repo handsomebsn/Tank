@@ -105,9 +105,12 @@ update();
 
 
 void MainWindow::keyReleaseEvent(QKeyEvent *event){
-   glo.player->stopmove();
+
+
    if(event->key()==Qt::Key_J)
    glo.player->stopfire();
+   else
+       glo.player->stopmove();
 
 }
 

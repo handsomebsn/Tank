@@ -1,10 +1,14 @@
 #include "bullet.h"
 
 Bullet::Bullet(const Tank &tank)
-{  m_dir=tank.m_dir;
+{
+    m_dir=tank.m_dir;
     m_pos=tank.m_pos;
     style=tank.style/2;
     m_step=tank.m_step+10;
+    wuli=tank.wuli;
+    fashu-tank.fashu;
+    m_bDisappear=false;
 CalculateSphere();
 }
 
@@ -55,6 +59,17 @@ void Bullet::Move(){
              break;
        }
      CalculateSphere();
+
+
+     for(int i=0;i<INUM;i++)
+         for(int j=0;j<JNUM;j++)
+          if(glo.gamemap->getcell(i,j))
+          if(IsBoom(*glo.gamemap->getcell(i,j)))
+          {glo.gamemap->getcell(i,j)->downlife(wuli,0);m_bDisappear=true;}
+
+
+
+
 }
 
 
