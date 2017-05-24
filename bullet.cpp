@@ -1,5 +1,5 @@
 #include "bullet.h"
-
+#include"status.h"
 Bullet::Bullet(const Tank &tank)
 {
     m_dir=tank.m_dir;
@@ -65,7 +65,10 @@ void Bullet::Move(){
          for(int j=0;j<JNUM;j++)
           if(glo.gamemap->getcell(i,j))
           if(IsBoom(*glo.gamemap->getcell(i,j)))
-          {glo.gamemap->getcell(i,j)->downlife(wuli,0);m_bDisappear=true;}
+          {glo.gamemap->getcell(i,j)->downlife(wuli,0);m_bDisappear=true;
+          *glo.status=Status(*glo.gamemap->getcell(i,j));
+
+          }
 
 
 

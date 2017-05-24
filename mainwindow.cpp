@@ -2,8 +2,14 @@
 #include"QRect"
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
-{   //初始发全局结构体
+{   //
+    QFont font;
+    font.setPointSize(32);
+    paint.setFont(font);
+    paint.setPen(QColor(255,0,0));
+    //初始发全局结构体
     glo.framei=0;
+    glo.status=new Status();
     glo.blockimage=new QImage(":/images/map_block.png");
     glo.tankimage=new QImage(":/images/player_tank.png");
     glo.bulletimage=new QImage(":/images/bullet.png");
@@ -37,10 +43,11 @@ void MainWindow::paintEvent(QPaintEvent *event)
     Q_UNUSED(event);
 
 setFixedSize(WIDTH,HEIGHT);
-QPainter paint(this);
+
 paint.begin(this);
 glo.gamemap->Display(paint);
 glo.player->Display(paint);
+glo.status->Display(paint);
 for(int i=0;i<glo.badtanks.count();i++)
 glo.badtanks.at(i)->Display(paint);
 

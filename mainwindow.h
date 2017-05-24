@@ -11,6 +11,7 @@
 #include "gamemap.h"
 #include"tank.h"
 #include"bullet.h"
+#include"status.h"
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
@@ -36,7 +37,7 @@ Gamestatus gamestatus;
 
 QTimer *timer;
 
-
+QPainter paint;
 };
 
 #endif // MAINWINDOW_H

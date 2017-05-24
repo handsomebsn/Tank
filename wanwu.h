@@ -34,7 +34,7 @@ class Wanwu
     float fashu;
 
  public:
-
+    friend class Status;
        Wanwu(){};
        // 绘图
        virtual void Display(QPainter &paint) = 0;

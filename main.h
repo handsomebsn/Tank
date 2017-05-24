@@ -21,12 +21,14 @@ class GameMap;
 class Tank;
 class Wanwu;
 class Bullet;
+class Status;
 #include<QList>
 typedef struct{
 unsigned int framei;
 QImage *blockimage;
 QImage *tankimage;
 QImage *bulletimage;
+Status *status;
 Tank *player;
 GameMap *gamemap;
 QList<Tank*> badtanks;
