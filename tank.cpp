@@ -2,36 +2,28 @@
 
 Tank::Tank()
 {
-m_pos.setX(32);
-m_pos.setY(32);
-m_step=8;
-gongjijiange=3;
-style=3;
-m_dir=UP;
-ismove=false;
-isfire=false;
-CalculateSphere();
-}
-
-Tank::Tank(int iIndex, int jIndex,Dir dir,int style,float wuli,float life){
-    this->m_pos.setX(jIndex*CELLWIDTH+CELLWIDTH/2);
-    this->m_pos.setY(iIndex*CELLHEIGHT+CELLHEIGHT/2);
-    this->wuli=wuli;
+    this->m_pos.setX(10*CELLWIDTH+CELLWIDTH/2);
+    this->m_pos.setY(8*CELLHEIGHT+CELLHEIGHT/2);
+    this->wuli=200;
+    this->group=0;//0玩家组，1敌人组
     m_step=16;
     gongjijiange=3;
-    this->style=style;
-    this->m_dir=m_dir;
+    this->style=0;
     ismove=false;
-    m_dir=dir;
+    m_dir=UP;
     isfire=false;
+    m_bDisappear=false;
+    life=1000;
     CalculateSphere();
 }
 
-Tank::Tank(int iIndex, int jIndex, int style, Dir dir){
+
+Tank::Tank(int iIndex,int jIndex,Dir dir,int style,int group){
     this->m_pos.setX(jIndex*CELLWIDTH+CELLWIDTH/2);
     this->m_pos.setY(iIndex*CELLHEIGHT+CELLHEIGHT/2);
     this->m_dir=dir;
     this->style=style;
+    this->group=group;
     isfire=false;
     wuli=wulis[style];
     fashu=fashus[style];
@@ -39,6 +31,8 @@ Tank::Tank(int iIndex, int jIndex, int style, Dir dir){
     mokang=mokangs[style];
     m_step=steps[style];
     gongjijiange=gongjijianges[style];
+    m_bDisappear=false;
+    life=lifes[style];
     CalculateSphere();
 }
 
@@ -47,9 +41,16 @@ Tank::Tank(int iIndex, int jIndex, int style, Dir dir){
 
 void Tank::Display(QPainter &paint){
     for(int i=0;i<bullets.count();i++)
+        if(bullets.at(i)&&!bullets.at(i)->IsDisappear())
     bullets.at(i)->Display(paint);
+        else if(bullets.at(i)){
+            delete bullets.at(i);//回收new出来的对象空间
+            bullets.removeAt(i);//将对象指针从链表删除
+            i--;
+        }
 
     QRect xm_rectSphere=m_rectSphere;
+    if(m_bDisappear)return;
     switch(m_dir){
         case UP:
 

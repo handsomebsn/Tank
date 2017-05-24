@@ -16,6 +16,7 @@ public:
     void CalculateSphere();
 private:
     int style;
+    int group;//子弹所在组
 
 };
 

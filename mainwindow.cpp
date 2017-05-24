@@ -14,10 +14,10 @@ MainWindow::MainWindow(QWidget *parent)
     glo.tankimage=new QImage(":/images/player_tank.png");
     glo.bulletimage=new QImage(":/images/bullet.png");
     glo.gamemap=new GameMap();
-    glo.player=new Tank(10,8);
-    Tank *tmp=new Tank(2,3,7,DOWN);
+    glo.player=new Tank();
+    Tank *tmp=new Tank(2,3,UP,5);
     glo.badtanks.append(tmp);
-    tmp=new Tank(2,5,6,DOWN);
+    tmp=new Tank(2,5,DOWN,3);
     glo.badtanks.append(tmp);
     //
     gamestatus=gameing;

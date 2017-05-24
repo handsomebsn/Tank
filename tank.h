@@ -9,16 +9,18 @@ class Tank : public Wanwu
 protected:
     QList<Bullet*> bullets;
    int steps[8]={4,8,8,16,16,32,32,64};
+  float lifes[8]={200,400,600,800,900,1100,1300,1500};
    float wulis[8]={20,40,80,160,160,320,320,640};
    float fashus[8]={20,40,80,160,160,320,320,640};
    float hujias[8]={50,70,90,110,130,150,170,190};
    float mokangs[8]={50,70,90,110,130,150,170,190};
    int gongjijianges[8]={8,7,6,5,4,3,2,2};
+
+   int  group;//坦克所在组
 public:
    friend class Bullet;
     Tank();
-    Tank(int iIndex,int jIndex,int style,Dir=UP);
-    Tank(int iIndex, int jIndex,Dir dir=UP,int style=0,float wuli=100,float life=200);
+    Tank(int iIndex,int jIndex,Dir dir=UP,int style=0,int group=1);
     // 计算势力范围
     virtual void CalculateSphere();
 
