@@ -173,9 +173,14 @@ void MainWindow::timefun(){
 /**敌人坦克控制**/
     for(int i=0;i<glo.badtanks.count();i++){
     if(qrand()%5==0)
-    glo.badtanks.at(i)->startmove();
+    {glo.badtanks.at(i)->startmove();glo.badtanks.at(i)->startfire();}
    if(qrand()%10==0)
        glo.badtanks.at(i)->stopmove();
+
+   if(qrand()%10==0)
+       glo.badtanks.at(i)->stopfire();
+
+
    if(qrand()%10==0){
        tmp=qrand()%4;
           switch(tmp){
@@ -201,6 +206,7 @@ void MainWindow::timefun(){
          glo.badtanks.at(i)->setdir(tmpdir);
            }
     }
+
  /**end**/
 
 
@@ -209,7 +215,7 @@ void MainWindow::timefun(){
 glo.player->Move();
 glo.player->fire();
 for(int i=0;i<glo.badtanks.count();i++)
-{glo.badtanks.at(i)->Move();}
+{glo.badtanks.at(i)->Move();glo.badtanks.at(i)->fire();}
 
 qDebug("timeout");
 update();

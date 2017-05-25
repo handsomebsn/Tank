@@ -81,6 +81,17 @@ void Bullet::Move(){
         *glo.status=Status(*glo.badtanks.at(i));//将打中的对象的血量显示出来
 
      }
+
+     if(glo.player->group!=this->group&&IsBoom(*glo.player))
+     {
+
+         m_bDisappear=true;//子弹消失
+         glo.player->downlife(wuli);
+         *glo.status=Status(*glo.player);//将打中的对象的血量显示出来
+
+     }
+
+
 //子弹出界
      if(m_pos.x()<0||m_pos.x()>WIDTH||m_pos.y()>HEIGHT||m_pos.y()<0)
          m_bDisappear=true;//子弹消失
