@@ -6,7 +6,11 @@ MainWindow::MainWindow(QWidget *parent)
     glo.blockimage=new QImage(":/images/map_block.png");
     glo.tankimage=new QImage(":/images/player_tank.png");
     glo.gamemap=new GameMap();
-    glo.player=new Tank();
+    glo.player=new Tank(10,8);
+    Tank *tmp=new Tank(2,3,1,UP);
+    glo.badtanks.append(tmp);
+    tmp=new Tank(2,5,6,UP);
+    glo.badtanks.append(tmp);
     //
     gamestatus=gameing;
     laststyle=0;
@@ -31,6 +35,9 @@ QPainter paint(this);
 paint.begin(this);
 glo.gamemap->Display(paint);
 glo.player->Display(paint);
+for(int i=0;i<glo.badtanks.count();i++)
+glo.badtanks.at(i)->Display(paint);
+
 paint.end();
 }
 

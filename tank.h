@@ -5,8 +5,16 @@
 #include"gamemap.h"
 class Tank : public Wanwu
 {
+protected:
+   int steps[8]={2,4,8,8,16,16,32,64};
+   float wulis[8]={20,40,80,160,160,320,320,640};
+   float fashus[8]={20,40,80,160,160,320,320,640};
+   float hujias[8]={50,70,90,110,130,150,170,190};
+   float mokangs[8]={50,70,90,110,130,150,170,190};
 public:
     Tank();
+    Tank(int iIndex,int jIndex,int style,Dir=UP);
+    Tank(int iIndex, int jIndex,Dir dir=UP,int style=0,float wuli=100,float life=200);
     // 计算势力范围
     virtual void CalculateSphere();
 
@@ -38,7 +46,7 @@ public:
     qDebug("---------------");
     //
     if(tmp.m_rectSphere.left()<0||tmp.m_rectSphere.right()>WIDTH||tmp.m_rectSphere.bottom()>HEIGHT||tmp.m_rectSphere.top()<0)
-    return true;
+    return true;//
 
     return false;
    }

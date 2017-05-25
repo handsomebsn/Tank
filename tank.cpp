@@ -5,11 +5,37 @@ Tank::Tank()
 m_pos.setX(32);
 m_pos.setY(32);
 m_step=8;
-style=0;
+style=3;
 m_dir=UP;
 ismove=false;
 CalculateSphere();
 }
+
+Tank::Tank(int iIndex, int jIndex,Dir dir,int style,float wuli,float life){
+    this->m_pos.setX(jIndex*CELLWIDTH+CELLWIDTH/2);
+    this->m_pos.setY(iIndex*CELLHEIGHT+CELLHEIGHT/2);
+    this->wuli=wuli;
+    m_step=8;
+    this->style=style;
+    this->m_dir=m_dir;
+    ismove=false;
+    CalculateSphere();
+}
+
+Tank::Tank(int iIndex, int jIndex, int style, Dir dir){
+    this->m_pos.setX(jIndex*CELLWIDTH+CELLWIDTH/2);
+    this->m_pos.setY(iIndex*CELLHEIGHT+CELLHEIGHT/2);
+    this->m_dir=dir;
+    this->style=style;
+    wuli=wulis[style];
+    fashu=fashus[style];
+    hujia=hujias[style];
+    mokang=mokangs[style];
+    CalculateSphere();
+}
+
+
+
 
 void Tank::Display(QPainter &paint){
     switch(m_dir){
@@ -17,19 +43,19 @@ void Tank::Display(QPainter &paint){
            //qDebug("up %d %d",m_rectSphere.x(),m_rectSphere.width());
            //paint.drawText(33,33,"fssf");
             paint.drawImage(m_rectSphere,*glo.tankimage,QRect(2*PICTANKWIDTH,style*2,PICTANKWIDTH,PICTANKHEIGHT));//身体
-            paint.drawImage(m_rectSphere,*glo.tankimage,QRect(2*PICTANKWIDTH,style*2+1,PICTANKWIDTH,PICTANKHEIGHT));//炮塔
+           // paint.drawImage(m_rectSphere,*glo.tankimage,QRect(2*PICTANKWIDTH,style*2+1,PICTANKWIDTH,PICTANKHEIGHT));//炮塔
             break;
         case DOWN:
             paint.drawImage(m_rectSphere,*glo.tankimage,QRect(0*PICTANKWIDTH,style*2,PICTANKWIDTH,PICTANKHEIGHT));//身体
-            paint.drawImage(m_rectSphere,*glo.tankimage,QRect(0*PICTANKWIDTH,style*2+1,PICTANKWIDTH,PICTANKHEIGHT));//炮塔
+            //paint.drawImage(m_rectSphere,*glo.tankimage,QRect(0*PICTANKWIDTH,style*2+1,PICTANKWIDTH,PICTANKHEIGHT));//炮塔
             break;
         case LEFT:
             paint.drawImage(m_rectSphere,*glo.tankimage,QRect(3*PICTANKWIDTH,style*2,PICTANKWIDTH,PICTANKHEIGHT));//身体
-            paint.drawImage(m_rectSphere,*glo.tankimage,QRect(3*PICTANKWIDTH,style*2+1,PICTANKWIDTH,PICTANKHEIGHT));//炮塔
+            //paint.drawImage(m_rectSphere,*glo.tankimage,QRect(3*PICTANKWIDTH,style*2+1,PICTANKWIDTH,PICTANKHEIGHT));//炮塔
             break;
         case RIGHT:
             paint.drawImage(m_rectSphere,*glo.tankimage,QRect(1*PICTANKWIDTH,style*2,PICTANKWIDTH,PICTANKHEIGHT));//身体
-            paint.drawImage(m_rectSphere,*glo.tankimage,QRect(1*PICTANKWIDTH,style*2+1,PICTANKWIDTH,PICTANKHEIGHT));//炮塔
+            //paint.drawImage(m_rectSphere,*glo.tankimage,QRect(1*PICTANKWIDTH,style*2+1,PICTANKWIDTH,PICTANKHEIGHT));//炮塔
             break;
       }
 
