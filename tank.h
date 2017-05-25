@@ -29,12 +29,17 @@ public:
     tmp.Move1();
     //qDebug("%d",tmp.m_rectSphere.right());
     //qDebug("%d",glo.gamemap->getcell(1,4)->m_rectSphere.left());
+    //
     for(int i=0;i<INUM;i++)
         for(int j=0;j<JNUM;j++)
             if(glo.gamemap->getcell(i,j)&&tmp.IsBoom(*glo.gamemap->getcell(i,j))){
                qDebug("-----------boom-------"); return true;
             }
     qDebug("---------------");
+    //
+    if(tmp.m_rectSphere.left()<0||tmp.m_rectSphere.right()>WIDTH||tmp.m_rectSphere.bottom()>HEIGHT||tmp.m_rectSphere.top()<0)
+    return true;
+
     return false;
    }
 
