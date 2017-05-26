@@ -22,7 +22,7 @@ QImage *blockimage;
 QImage *tankimage;
 Tank *player;
 GameMap *gamemap;
-QList<Wanwu*> badtanks;
+QList<Tank*> badtanks;
 }Glo;//实列化Glo类型变量，能实列化出来,所有的指针变量所占空间daxiao一样。
 extern Glo glo;//声明变量
 #endif // MAIN

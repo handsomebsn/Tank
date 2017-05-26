@@ -7,7 +7,7 @@ MainWindow::MainWindow(QWidget *parent)
     glo.tankimage=new QImage(":/images/player_tank.png");
     glo.gamemap=new GameMap();
     glo.player=new Tank(10,8);
-    Tank *tmp=new Tank(2,3,1,UP);
+    Tank *tmp=new Tank(2,3,7,UP);
     glo.badtanks.append(tmp);
     tmp=new Tank(2,5,6,UP);
     glo.badtanks.append(tmp);
@@ -19,12 +19,19 @@ MainWindow::MainWindow(QWidget *parent)
     timer->setInterval(25);
     connect(timer,SIGNAL(timeout()),this,SLOT(timefun()));
     timer->start();
+   thr=new Thread(this);
+   thr->start();
+
 }
 
 MainWindow::~MainWindow()
 {
 timer->stop();
 delete timer;
+ thr->terminate();
+ thr->wait();
+ delete thr;
+
 }
 void MainWindow::paintEvent(QPaintEvent *event)
 {
@@ -146,7 +153,8 @@ void MainWindow::mouseReleaseEvent(QMouseEvent *event){
 void MainWindow::timefun(){
 
 glo.player->Move();
-
+for(int i=0;i<glo.badtanks.count();i++)
+glo.badtanks.at(i)->Move();
 qDebug("timeout");
 update();
 }
