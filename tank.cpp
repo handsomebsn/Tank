@@ -109,6 +109,28 @@ void Tank::Move1()
 qDebug("move off");
 }
 
+void Tank::fire(){
+
+Bullet *newbullet=new Bullet(*this);
+glo.playerbullets.append(newbullet);
+
+
+}
+
+
+void Tank::startfire(){
+
+    isfire=true;
+
+}
+
+void Tank::stopfire(){
+
+
+
+    isfire=false;
+}
+
 
 
 void Tank::CalculateSphere(){

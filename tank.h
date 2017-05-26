@@ -3,6 +3,7 @@
 #include"wanwu.h"
 #include"main.h"
 #include"gamemap.h"
+#include"bullet.h"
 class Tank : public Wanwu
 {
 protected:
@@ -30,6 +31,10 @@ public:
     void startmove(){ismove=true;}
     //设置移动状态为关
     void stopmove(){ismove=false;}
+    //
+    void fire();
+    void startfire();
+    void stopfire();
     //设置方向
     void setdir(Dir dir){m_dir=dir;}
     //坦克下一步 是否和地图块碰撞
@@ -56,6 +61,7 @@ public:
 private:
     int style;
     bool ismove;
+    bool isfire;
 
 };
 

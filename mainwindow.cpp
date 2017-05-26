@@ -42,8 +42,8 @@ glo.gamemap->Display(paint);
 glo.player->Display(paint);
 for(int i=0;i<glo.badtanks.count();i++)
 glo.badtanks.at(i)->Display(paint);
-for(int i=0;i<glo.palybullets.count();i++)
-glo.palybullets.at(i)->Display(paint);
+for(int i=0;i<glo.playerbullets.count();i++)
+glo.playerbullets.at(i)->Display(paint);
 paint.end();
 }
 
@@ -51,6 +51,7 @@ paint.end();
 
 
 void MainWindow::keyPressEvent(QKeyEvent *event){
+    qDebug("key:--------------------------%d ",event->key());
 //当按键为M时设置游戏状态为mapedit
     if(event->key()==Qt::Key_M)
         {
@@ -92,8 +93,7 @@ void MainWindow::keyPressEvent(QKeyEvent *event){
 
           }else if(event->key()==Qt::Key_J){
 
-                 Bullet *bullet=new Bullet(*glo.player);
-                 glo.palybullets.append(bullet);
+                 glo.player->startfire();
 
           }
 
@@ -193,10 +193,11 @@ void MainWindow::timefun(){
 
 
 glo.player->Move();
+glo.player->fire();
 for(int i=0;i<glo.badtanks.count();i++)
 {glo.badtanks.at(i)->Move();}
-for(int i=0;i<glo.palybullets.count();i++)
-glo.palybullets.at(i)->Move();
+for(int i=0;i<glo.playerbullets.count();i++)
+glo.playerbullets.at(i)->Move();
 qDebug("timeout");
 update();
 }
