@@ -8,6 +8,7 @@ m_step=8;
 style=3;
 m_dir=UP;
 ismove=false;
+isfire=false;
 CalculateSphere();
 }
 
@@ -20,6 +21,7 @@ Tank::Tank(int iIndex, int jIndex,Dir dir,int style,float wuli,float life){
     this->m_dir=m_dir;
     ismove=false;
     m_dir=dir;
+    isfire=false;
     CalculateSphere();
 }
 
@@ -28,6 +30,7 @@ Tank::Tank(int iIndex, int jIndex, int style, Dir dir){
     this->m_pos.setY(iIndex*CELLHEIGHT+CELLHEIGHT/2);
     this->m_dir=dir;
     this->style=style;
+    isfire=false;
     wuli=wulis[style];
     fashu=fashus[style];
     hujia=hujias[style];
@@ -110,10 +113,10 @@ qDebug("move off");
 }
 
 void Tank::fire(){
-
+if(isfire==true){
 Bullet *newbullet=new Bullet(*this);
 glo.playerbullets.append(newbullet);
-
+}
 
 }
 
