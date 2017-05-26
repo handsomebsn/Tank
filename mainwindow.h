@@ -10,6 +10,7 @@
 #include"main.h"
 #include "gamemap.h"
 #include"tank.h"
+#include"bullet.h"
 class MainWindow : public QMainWindow
 {
     Q_OBJECT

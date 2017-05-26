@@ -12,6 +12,7 @@ protected:
    float hujias[8]={50,70,90,110,130,150,170,190};
    float mokangs[8]={50,70,90,110,130,150,170,190};
 public:
+   friend class Bullet;
     Tank();
     Tank(int iIndex,int jIndex,int style,Dir=UP);
     Tank(int iIndex, int jIndex,Dir dir=UP,int style=0,float wuli=100,float life=200);

@@ -12,17 +12,25 @@
 #define PICTANKHEIGHT 64//坦克图片高度
 #define TANKWIDTH 64//坦克宽度
 #define TANKHEIGHT 64//坦克高度
+#define PICBULLETWIDTH 40//zidan图片宽度
+#define PICBULLETHEIGHT 40//zidan图片高度
+#define BULLETWIDTH 40//zidan宽度
+#define BULLETHEIGHT 40//zidan高度
 class QImage;
 class GameMap;
 class Tank;
 class Wanwu;
+class Bullet;
 #include<QList>
 typedef struct{
 QImage *blockimage;
 QImage *tankimage;
+QImage *bulletimage;
 Tank *player;
 GameMap *gamemap;
 QList<Tank*> badtanks;
+QList<Bullet*> palybullets;
+
 }Glo;//实列化Glo类型变量，能实列化出来,所有的指针变量所占空间daxiao一样。
 extern Glo glo;//声明变量
 #endif // MAIN

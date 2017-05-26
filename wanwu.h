@@ -6,7 +6,7 @@
 enum Dir { UP, DOWN, LEFT, RIGHT };
 class Wanwu
 {
- public:
+ protected:
     // 计算势力范围
     virtual void CalculateSphere() = 0;
 

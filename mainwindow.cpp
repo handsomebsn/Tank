@@ -5,6 +5,7 @@ MainWindow::MainWindow(QWidget *parent)
 {   //初始发全局结构体
     glo.blockimage=new QImage(":/images/map_block.png");
     glo.tankimage=new QImage(":/images/player_tank.png");
+    glo.bulletimage=new QImage(":/images/bullet.png");
     glo.gamemap=new GameMap();
     glo.player=new Tank(10,8);
     Tank *tmp=new Tank(2,3,7,DOWN);
@@ -16,7 +17,7 @@ MainWindow::MainWindow(QWidget *parent)
     laststyle=0;
     leftorright=1;
     timer=new QTimer(this);
-    timer->setInterval(10);
+    timer->setInterval(25);
     connect(timer,SIGNAL(timeout()),this,SLOT(timefun()));
     timer->start();
 
@@ -41,7 +42,8 @@ glo.gamemap->Display(paint);
 glo.player->Display(paint);
 for(int i=0;i<glo.badtanks.count();i++)
 glo.badtanks.at(i)->Display(paint);
-
+for(int i=0;i<glo.palybullets.count();i++)
+glo.palybullets.at(i)->Display(paint);
 paint.end();
 }
 
@@ -87,6 +89,11 @@ void MainWindow::keyPressEvent(QKeyEvent *event){
           else if(event->key()==Qt::Key_D)
           {
               glo.player->setdir(RIGHT);glo.player->startmove();
+
+          }else if(event->key()==Qt::Key_J){
+
+                 Bullet *bullet=new Bullet(*glo.player);
+                 glo.palybullets.append(bullet);
 
           }
 
@@ -187,8 +194,9 @@ void MainWindow::timefun(){
 
 glo.player->Move();
 for(int i=0;i<glo.badtanks.count();i++)
-{glo.badtanks.at(i)->Move();qDebug("%d %d",glo.badtanks.at(i)->m_pos.x(),glo.badtanks.at(i)->m_pos.y());}
-
+{glo.badtanks.at(i)->Move();}
+for(int i=0;i<glo.palybullets.count();i++)
+glo.palybullets.at(i)->Move();
 qDebug("timeout");
 update();
 }
