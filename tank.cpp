@@ -5,6 +5,7 @@ Tank::Tank()
 m_pos.setX(32);
 m_pos.setY(32);
 m_step=8;
+gongjijiange=3;
 style=3;
 m_dir=UP;
 ismove=false;
@@ -17,6 +18,7 @@ Tank::Tank(int iIndex, int jIndex,Dir dir,int style,float wuli,float life){
     this->m_pos.setY(iIndex*CELLHEIGHT+CELLHEIGHT/2);
     this->wuli=wuli;
     m_step=16;
+    gongjijiange=3;
     this->style=style;
     this->m_dir=m_dir;
     ismove=false;
@@ -36,6 +38,7 @@ Tank::Tank(int iIndex, int jIndex, int style, Dir dir){
     hujia=hujias[style];
     mokang=mokangs[style];
     m_step=steps[style];
+    gongjijiange=gongjijianges[style];
     CalculateSphere();
 }
 
@@ -43,6 +46,9 @@ Tank::Tank(int iIndex, int jIndex, int style, Dir dir){
 
 
 void Tank::Display(QPainter &paint){
+    for(int i=0;i<bullets.count();i++)
+    bullets.at(i)->Display(paint);
+
     QRect xm_rectSphere=m_rectSphere;
     switch(m_dir){
         case UP:
@@ -67,6 +73,9 @@ void Tank::Display(QPainter &paint){
 }
 void Tank::Move()
 {
+    for(int i=0;i<bullets.count();i++)
+    bullets.at(i)->Move();
+
    if(nextsiboom())return;
    if(ismove==true){
     switch(m_dir){
@@ -113,9 +122,9 @@ qDebug("move off");
 }
 
 void Tank::fire(){
-if(isfire==true){
+if(isfire==true&&glo.framei%gongjijiange==0){
 Bullet *newbullet=new Bullet(*this);
-glo.playerbullets.append(newbullet);
+bullets.append(newbullet);
 }
 
 }

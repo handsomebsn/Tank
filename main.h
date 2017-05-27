@@ -23,6 +23,7 @@ class Wanwu;
 class Bullet;
 #include<QList>
 typedef struct{
+unsigned int framei;
 QImage *blockimage;
 QImage *tankimage;
 QImage *bulletimage;

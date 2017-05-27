@@ -3,6 +3,7 @@
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
 {   //初始发全局结构体
+    glo.framei=0;
     glo.blockimage=new QImage(":/images/map_block.png");
     glo.tankimage=new QImage(":/images/player_tank.png");
     glo.bulletimage=new QImage(":/images/bullet.png");
@@ -42,8 +43,7 @@ glo.gamemap->Display(paint);
 glo.player->Display(paint);
 for(int i=0;i<glo.badtanks.count();i++)
 glo.badtanks.at(i)->Display(paint);
-for(int i=0;i<glo.playerbullets.count();i++)
-glo.playerbullets.at(i)->Display(paint);
+
 paint.end();
 }
 
@@ -106,6 +106,9 @@ update();
 
 void MainWindow::keyReleaseEvent(QKeyEvent *event){
    glo.player->stopmove();
+   if(event->key()==Qt::Key_J)
+   glo.player->stopfire();
+
 }
 
 // 鼠标移动事件       默认情况下，触发事件需要按下鼠标，才能触发。可设置为自动触发:setMouseTracking(true);
@@ -155,6 +158,7 @@ void MainWindow::mouseReleaseEvent(QMouseEvent *event){
 }
 
 void MainWindow::timefun(){
+    glo.framei++;
     Dir tmpdir;int tmp;
 /**敌人坦克控制**/
     for(int i=0;i<glo.badtanks.count();i++){
@@ -196,8 +200,7 @@ glo.player->Move();
 glo.player->fire();
 for(int i=0;i<glo.badtanks.count();i++)
 {glo.badtanks.at(i)->Move();}
-for(int i=0;i<glo.playerbullets.count();i++)
-glo.playerbullets.at(i)->Move();
+
 qDebug("timeout");
 update();
 }

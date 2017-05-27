@@ -7,11 +7,13 @@
 class Tank : public Wanwu
 {
 protected:
+    QList<Bullet*> bullets;
    int steps[8]={4,8,8,16,16,32,32,64};
    float wulis[8]={20,40,80,160,160,320,320,640};
    float fashus[8]={20,40,80,160,160,320,320,640};
    float hujias[8]={50,70,90,110,130,150,170,190};
    float mokangs[8]={50,70,90,110,130,150,170,190};
+   int gongjijianges[8]={8,7,6,5,4,3,2,2};
 public:
    friend class Bullet;
     Tank();
@@ -62,6 +64,7 @@ private:
     int style;
     bool ismove;
     bool isfire;
+    int gongjijiange;
 
 };
 
