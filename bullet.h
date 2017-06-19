@@ -13,6 +13,7 @@ public:
     // 移动
     void Move() ;
     //
+protected:
     void CalculateSphere();
 private:
     int style;

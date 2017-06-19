@@ -16,12 +16,13 @@ protected:
      static float mokangs[8];
      static int gongjijianges[8];
    int  group;//坦克所在组
+   // 计算势力范围
+   virtual void CalculateSphere();
 public:
    friend class Bullet;
     Tank();
     Tank(int iIndex,int jIndex,Dir dir=UP,int style=0,int group=1);
-    // 计算势力范围
-    virtual void CalculateSphere();
+
 
     // 绘图
     void Display(QPainter &paint);
@@ -41,24 +42,7 @@ public:
     //设置方向
     void setdir(Dir dir){m_dir=dir;}
     //坦克下一步 是否和地图块碰撞
-   bool nextsiboom(){
-    Tank tmp=*this;
-    tmp.Move1();
-    //qDebug("%d",tmp.m_rectSphere.right());
-    //qDebug("%d",glo.gamemap->getcell(1,4)->m_rectSphere.left());
-    //
-    for(int i=0;i<INUM;i++)
-        for(int j=0;j<JNUM;j++)
-            if(glo.gamemap->getcell(i,j)&&!glo.gamemap->getcell(i,j)->ischuantou()&&tmp.IsBoom(*glo.gamemap->getcell(i,j))){
-               qDebug("-----------boom-------"); return true;
-            }
-    qDebug("---------------");
-    //
-    if(tmp.m_rectSphere.left()<0||tmp.m_rectSphere.right()>WIDTH||tmp.m_rectSphere.bottom()>HEIGHT||tmp.m_rectSphere.top()<0)
-    return true;//
-
-    return false;
-   }
+   bool nextsiboom();
 
 
 private:

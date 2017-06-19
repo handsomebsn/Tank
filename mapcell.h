@@ -51,8 +51,8 @@ void CalculateSphere(){
 
 }
 
-bool chuantou;
-bool chuantou1;
+bool chuantou;//坦克能否穿透方块
+bool chuantou1;//子弹能否穿透方块
 
 };
 

@@ -105,7 +105,7 @@ void Tank::Move()
 qDebug("move off");
 }
 
-void Tank::Move1()
+void Tank::Move1()//和move一样，为了避免死循环
 {
    if(ismove==true){
     switch(m_dir){
@@ -127,6 +127,27 @@ void Tank::Move1()
  }
 qDebug("move off");
 }
+
+
+bool Tank::nextsiboom(){
+ Tank tmp=*this;
+ tmp.Move1();
+ //qDebug("%d",tmp.m_rectSphere.right());
+ //qDebug("%d",glo.gamemap->getcell(1,4)->m_rectSphere.left());
+ //是否与地图块碰撞
+ for(int i=0;i<INUM;i++)
+     for(int j=0;j<JNUM;j++)
+         if(glo.gamemap->getcell(i,j)&&!glo.gamemap->getcell(i,j)->ischuantou()&&tmp.IsBoom(*glo.gamemap->getcell(i,j))){
+            qDebug("-----------boom-------"); return true;
+         }
+ qDebug("---------------");
+ //是否与地图边界碰撞
+ if(tmp.m_rectSphere.left()<0||tmp.m_rectSphere.right()>WIDTH||tmp.m_rectSphere.bottom()>HEIGHT||tmp.m_rectSphere.top()<0)
+ return true;//
+
+ return false;
+}
+
 
 void Tank::fire(){
     if(m_bDisappear)return;
