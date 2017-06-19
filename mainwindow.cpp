@@ -168,6 +168,7 @@ void MainWindow::mouseReleaseEvent(QMouseEvent *event){
 }
 
 void MainWindow::timefun(){
+  if(gamestatus!=gameing)return;
     glo.framei++;
     Dir tmpdir;int tmp;
 /**敌人坦克控制**/
