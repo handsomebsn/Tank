@@ -1,5 +1,11 @@
 #include "tank.h"
-
+int Tank::steps[8]={4,8,8,16,16,32,32,64};
+float Tank::lifes[8]={200,400,600,800,900,1100,1300,1500};
+float Tank::wulis[8]={20,40,80,160,160,320,320,640};
+float Tank::fashus[8]={20,40,80,160,160,320,320,640};
+float Tank::hujias[8]={50,70,90,110,130,150,170,190};
+float Tank::mokangs[8]={50,70,90,110,130,150,170,190};
+int Tank::gongjijianges[8]={8,7,6,5,4,3,2,2};
 Tank::Tank()
 {
     this->m_pos.setX(10*CELLWIDTH+CELLWIDTH/2);
@@ -76,7 +82,7 @@ void Tank::Move()
 {
     for(int i=0;i<bullets.count();i++)
     bullets.at(i)->Move();
-
+   if(m_bDisappear)return ;
    if(nextsiboom())return;
    if(ismove==true){
     switch(m_dir){
@@ -123,6 +129,7 @@ qDebug("move off");
 }
 
 void Tank::fire(){
+    if(m_bDisappear)return;
 if(isfire==true&&glo.framei%gongjijiange==0){
 Bullet *newbullet=new Bullet(*this);
 bullets.append(newbullet);

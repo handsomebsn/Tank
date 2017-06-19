@@ -8,14 +8,13 @@ class Tank : public Wanwu
 {
 protected:
     QList<Bullet*> bullets;
-   int steps[8]={4,8,8,16,16,32,32,64};
-  float lifes[8]={200,400,600,800,900,1100,1300,1500};
-   float wulis[8]={20,40,80,160,160,320,320,640};
-   float fashus[8]={20,40,80,160,160,320,320,640};
-   float hujias[8]={50,70,90,110,130,150,170,190};
-   float mokangs[8]={50,70,90,110,130,150,170,190};
-   int gongjijianges[8]={8,7,6,5,4,3,2,2};
-
+     static int steps[8];
+     static float lifes[8];
+     static float wulis[8];
+     static float fashus[8];
+     static float hujias[8];
+     static float mokangs[8];
+     static int gongjijianges[8];
    int  group;//坦克所在组
 public:
    friend class Bullet;
@@ -50,7 +49,7 @@ public:
     //
     for(int i=0;i<INUM;i++)
         for(int j=0;j<JNUM;j++)
-            if(glo.gamemap->getcell(i,j)&&tmp.IsBoom(*glo.gamemap->getcell(i,j))){
+            if(glo.gamemap->getcell(i,j)&&!glo.gamemap->getcell(i,j)->ischuantou()&&tmp.IsBoom(*glo.gamemap->getcell(i,j))){
                qDebug("-----------boom-------"); return true;
             }
     qDebug("---------------");

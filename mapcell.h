@@ -7,21 +7,14 @@
 class Mapcell : public Wanwu
 {
 public:
-
+        enum {BLOCKSNUM=13};
+        static float lifes[BLOCKSNUM];
+        static float hujias[BLOCKSNUM];
+        static float mokangs[BLOCKSNUM];
+        static bool chuantous[BLOCKSNUM];
+        static bool chuantous1[BLOCKSNUM];
     Mapcell();
-    Mapcell(int iIndex,int jIndex,int style=0,float life=800){//护甲魔抗物理攻击魔法攻击攻击速度移动速度暂时用不到
-
-
-        this->m_pos.setX(jIndex*CELLWIDTH+CELLWIDTH/2);
-        this->m_pos.setY(iIndex*CELLHEIGHT+CELLHEIGHT/2);
-        this->CalculateSphere();
-        this->m_bDisappear=false;
-        this->life=life;
-        this->style=style%28;//map_block.png总共有28小块
-        this->hujia=300;
-        this->mokang=300;
-
-    }
+    Mapcell(int iIndex, int jIndex, int style=0);//护甲魔抗物理攻击魔法攻击攻击速度移动速度暂时用不到
     // 绘图
     void Display(QPainter &paint);
 
@@ -30,11 +23,21 @@ public:
    //得到方块样式
    int getstyle(){return style;}
    //切换样式
-   int switchstyle(){style++;style=style%28;return style;}
+   int switchstyle(){style++;style=style%BLOCKSNUM; this->life=lifes[this->style];
+                     this->hujia=hujias[this->style];
+                     this->mokang=mokangs[this->style];
+                     this->chuantou=chuantous[this->style];
+                     this->chuantou1=chuantous1[this->style];return style;}
    //设置样式
-   void setstyle(int style){this->style=style;}
-
-
+   void setstyle(int style){this->style=style%BLOCKSNUM; this->life=lifes[this->style];
+                            this->hujia=hujias[this->style];
+                            this->mokang=mokangs[this->style];
+                            this->chuantou=chuantous[this->style];
+                            this->chuantou1=chuantous1[this->style];}
+   //
+   bool ischuantou(){return chuantou;}
+   //
+   bool ischuantou1(){return chuantou1;}
 private:
 //static QImage blockimage;
    int style;//方块样式，从图片上依次编号0 ，1，2 ，3，4，5.。。。。
@@ -48,6 +51,8 @@ void CalculateSphere(){
 
 }
 
+bool chuantou;
+bool chuantou1;
 
 };
 

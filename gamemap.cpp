@@ -57,7 +57,7 @@ void GameMap::savemap(const char *str){
     std::ofstream ou(str);
     for(int i=0;i<INUM;i++)
         for(int j=0;j<JNUM;j++)
-             if(cells[i][j])
+             if(cells[i][j]&&!cells[i][j]->IsDisappear())
              ou.write((char*)cells[i][j],sizeof(Mapcell));
 ou.close();
 }

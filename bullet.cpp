@@ -65,6 +65,7 @@ void Bullet::Move(){
      for(int i=0;i<INUM;i++)
          for(int j=0;j<JNUM;j++)
           if(glo.gamemap->getcell(i,j))
+           if(!glo.gamemap->getcell(i,j)->ischuantou1())
           if(IsBoom(*glo.gamemap->getcell(i,j)))
           {glo.gamemap->getcell(i,j)->downlife(wuli,0);m_bDisappear=true;
           *glo.status=Status(*glo.gamemap->getcell(i,j));
