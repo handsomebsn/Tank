@@ -20,8 +20,8 @@ protected:
    virtual void CalculateSphere();
 public:
    friend class Bullet;
-    Tank();
-    Tank(int iIndex,int jIndex,Dir dir=UP,int style=0,int group=1);
+    Tank();//wanjia player
+    Tank(int iIndex,int jIndex,Dir dir=UP,int style=0,int group=1);//element player
 
 
     // 绘图

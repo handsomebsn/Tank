@@ -68,6 +68,7 @@ void Bullet::Move(){
            if(!glo.gamemap->getcell(i,j)->ischuantou1())
           if(IsBoom(*glo.gamemap->getcell(i,j)))
           {glo.gamemap->getcell(i,j)->downlife(wuli,0);m_bDisappear=true;
+              if(group==0)
           *glo.status=Status(*glo.gamemap->getcell(i,j));
 
           }
@@ -88,7 +89,7 @@ void Bullet::Move(){
 
          m_bDisappear=true;//子弹消失
          glo.player->downlife(wuli);
-         *glo.status=Status(*glo.player);//将打中的对象的血量显示出来
+         //*glo.status=Status(*glo.player);//将打中的对象的血量显示出来
 
      }
 
